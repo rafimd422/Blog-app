@@ -38,6 +38,12 @@ class BlogPostsController < ApplicationController
       end
     end
 
+    def destroy
+      @blog_post = BlogPost.find(params[:id])
+      @blog_post.destroy # Delete the blog post from the database
+      redirect_to root_path # Redirect to the index page after deletion
+    end
+
  private
     def blog_post_params
       params.require(:blog_post).permit(:title, :body)
