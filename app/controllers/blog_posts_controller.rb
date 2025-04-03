@@ -6,18 +6,29 @@ class BlogPostsController < ApplicationController
 
     # to show specific blog post
     def show
-      @blog_post = BlogPost.find(params[:id])
+      if user_signed_in?
+        @blog_post = BlogPost.new # Initialize a new BlogPost object
+      else
+          redirect_to root_path, alert: "You have to login First"
+      end
       rescue ActiveRecord::RecordNotFound
         redirect_to root_path, alert: "Blog post not found."
     end
 
     # to create new blogpost
     def new
+      if user_signed_in?
       @blog_post = BlogPost.new # Initialize a new BlogPost object
+      else
+        redirect_to root_path
+      end
     end
-
     def edit
-      @blog_post = BlogPost.find(params[:id])
+      if user_signed_in?
+        @blog_post = BlogPost.new # Initialize a new BlogPost object
+      else
+          redirect_to root_path
+      end
     end
 
     def update

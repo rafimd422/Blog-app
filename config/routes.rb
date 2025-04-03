@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
     resources :blog_posts # This line creates all the RESTful routes for the BlogPostsController
 
     # get "/blog_posts/new", to: "blog_posts#new", as: :new_blog_post
